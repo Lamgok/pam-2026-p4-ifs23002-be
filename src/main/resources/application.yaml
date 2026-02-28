@@ -3,12 +3,12 @@ ktor:
     modules:
       - org.delcom.ApplicationKt.module
   deployment:
-    port: ${APP_PORT:8000}
-    host: ${APP_HOST:0.0.0.0}
+    port: ${APP_PORT}
+    host: ${APP_HOST}
 
   database:
-    host: ${DB_HOST:127.0.0.1}
-    port: ${DB_PORT:5432}
-    name: ${DB_NAME:db_pam_sukus}
-    user: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:postgres}
+    host: ${DB_HOST}
+    port: ${DB_PORT}
+    name: ${DB_NAME}
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
