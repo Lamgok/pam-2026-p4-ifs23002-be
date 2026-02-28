@@ -1,4 +1,5 @@
 ## Global Variabel
+#@BaseUrl = http://127.0.0.1:8000
 @BaseUrl = https://pam-2026-p4-ifs23002-be.delcom.org:8080
 
 ## Profile
@@ -237,3 +238,4 @@ Content-Type: image/png
 # @name DeleteSukus
 DELETE {{BaseUrl}}/sukus/{{sukusId}}
 Accept: application/json
+
