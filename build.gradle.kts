@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.JavaExec
+import org.gradle.api.tasks.testing.Test
+
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
@@ -14,6 +17,14 @@ version = "0.0.1"
 
 application {
     mainClass = "org.delcom.ApplicationKt"
+}
+
+tasks.named<JavaExec>("run") {
+    workingDir = projectDir
+}
+
+tasks.withType<Test>().configureEach {
+    workingDir = projectDir
 }
 
 dependencies {
