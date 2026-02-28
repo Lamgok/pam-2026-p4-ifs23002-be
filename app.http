@@ -1,6 +1,5 @@
 ## Global Variabel
-@BaseUrl = https://pam-2026-p4-23002-be.delcom.org:8080
-#@BaseUrl = http://127.0.0.1:8000
+@BaseUrl = https://pam-2026-p4-ifs23002-be.delcom.org:8080
 
 ## Profile
 ## ===========================================
@@ -14,7 +13,6 @@ Content-Type: application/json
 # @name GetProfilePhoto
 GET {{BaseUrl}}/profile/photo
 Content-Type: application/json
-
 
 ## Plants
 ## ===========================================
@@ -127,3 +125,115 @@ Content-Type: image/png
 # @name DeletePlant
 DELETE {{BaseUrl}}/plants/{{plantId}}
 Content-Type: application/json
+
+## Sukus
+## ===========================================
+
+### Mengambil semua data suku
+# @name GetAllSukus
+GET {{BaseUrl}}/sukus?search=
+Accept: application/json
+
+#> {%
+#    client.global.set("sukusId", response.body.data.sukus[0].id);
+#    console.log(client.global.get("sukusId"))
+#%}
+
+### Menambahkan data suku baru
+# @name PostSukus
+POST {{BaseUrl}}/sukus
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Batak
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Suku yang berasal dari Sumatera Utara.
+--WebAppBoundary
+Content-Disposition: form-data; name="makanan"
+
+Arsik
+--WebAppBoundary
+Content-Disposition: form-data; name="rumahadat"
+
+Rumah Bolon
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    client.global.set("sukusId", response.body.data.sukusId);
+    console.log(client.global.get("sukusId"));
+%}
+
+### Mengambil data suku berdasarkan id-nya
+# @name GetSukusById
+GET {{BaseUrl}}/sukus/{{sukusId}}
+Accept: application/json
+
+### Melihat gambar suku
+# @name GetSukusImageById
+GET {{BaseUrl}}/sukus/{{sukusId}}/image
+Accept: application/json
+
+### Mengubah hanya data suku berdasarkan id-nya
+# @name PutSukusOnlyData
+PUT {{BaseUrl}}/sukus/{{sukusId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Batak (Update)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Suku yang berasal dari Sumatera Utara.
+--WebAppBoundary
+Content-Disposition: form-data; name="makanan"
+
+Arsik
+--WebAppBoundary
+Content-Disposition: form-data; name="rumahadat"
+
+Rumah Bolon
+--WebAppBoundary--
+
+### Mengubah gambar dan data suku berdasarkan id-nya
+# @name PutSukus
+PUT {{BaseUrl}}/sukus/{{sukusId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Batak (Edisi Kolektor)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Suku yang berasal dari Sumatera Utara.
+--WebAppBoundary
+Content-Disposition: form-data; name="makanan"
+
+Arsik
+--WebAppBoundary
+Content-Disposition: form-data; name="rumahadat"
+
+Rumah Bolon
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+### Menghapus data suku berdasarkan id-nya
+# @name DeleteSukus
+DELETE {{BaseUrl}}/sukus/{{sukusId}}
+Accept: application/json
